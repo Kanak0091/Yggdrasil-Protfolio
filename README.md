@@ -59,12 +59,11 @@ kanak = {
 | Project | Description | Tech Stack | Link |
 | :--- | :--- | :--- | :--- |
 | 🏎️ **[pitwall-ai](https://github.com/Kanak0091/pitwall-ai)** | AI-powered motorsport telemetry, race strategy analytics, and predictive modeling repository. | `Python` `AI/ML` `Data Analytics` | 📂 [View Repo](https://github.com/Kanak0091/pitwall-ai) |
+| 🌳 **[Yggdrasil-Protfolio](https://github.com/Kanak0091/Yggdrasil-Protfolio)** | Interactive personal portfolio web application hosted on GitHub Pages. | `HTML5` `CSS3` `JavaScript` | 🔗 [Live Portfolio](https://kanak0091.github.io/Yggdrasil-Protfolio/) • [Repo](https://github.com/Kanak0091/Yggdrasil-Protfolio) |
 | 🌐 **[DeveloperPortfolio](https://github.com/Kanak0091/DeveloperPortfolio)** | End-to-end developer ecosystem repository featuring Linux profiling, Bash automation scripts, REST API extraction, and live GitHub Pages site. | `Linux` `Bash` `Git` `REST API` `HTML/CSS` | 🔗 [Visit Site](https://kanak0091.github.io/DeveloperPortfolio/) • [Repo](https://github.com/Kanak0091/DeveloperPortfolio) |
-| 🌳 **[Yggdrasil Portfolio](https://kanak0091.github.io/Yggdrasil-Protfolio/)** | Interactive live portfolio showcase hosted on GitHub Pages. | `HTML5` `CSS3` `JavaScript` | 🔗 [Live Portfolio](https://kanak0091.github.io/Yggdrasil-Protfolio/) |
 | 💻 **[CSE103 Lab (LAB3)](https://github.com/Kanak0091/cse103-lab-LAB3)** | Structured Git collaboration workflows, Linux shell automation, and REST API scripting. | `Python` `Bash` `Git` `REST API` | 📂 [View Repo](https://github.com/Kanak0091/cse103-lab-LAB3) |
 | 📊 **[Data Science Capstone](https://github.com/Kanak0091/Dscapstone)** | Structured dataset analysis using Python and SQLite to uncover patterns and generate reproducible insights. | `Python` `SQLite` `Data Analytics` | 📂 [View Repo](https://github.com/Kanak0091/Dscapstone) |
 | 🛡️ **Mule Account Detection Engine** | Collaborative Python anomaly detection module screening transaction patterns to flag suspicious mule accounts. | `Python` `Anomaly Detection` | 👤 [GitHub Profile](https://github.com/Kanak0091) |
-
 ---
 
 ### 🏆 Certifications & Workshops
