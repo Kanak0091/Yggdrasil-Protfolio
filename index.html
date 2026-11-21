@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <meta name="description" content="Kanak Sachin Chaudhary — Interactive Norse Mythology Realm-Map Portfolio." />
+  <title>Kanak Sachin Chaudhary — Yggdrasil Realm-Map Portfolio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Preloader -->
+  <div id="loader" class="loader" role="status" aria-live="polite">
+    <div class="loader-stone">
+      <div class="loader-runes" aria-hidden="true">
+        <span>ᚠ</span><span>ᚢ</span><span>ᚦ</span><span>ᚨ</span><span>ᚱ</span><span>ᚲ</span><span>ᚷ</span>
+      </div>
+      <div class="loader-ring">
+        <svg viewBox="0 0 120 120" class="loader-svg" aria-hidden="true">
+          <circle cx="60" cy="60" r="54" class="loader-track"></circle>
+          <circle cx="60" cy="60" r="54" class="loader-progress" id="loader-circle"></circle>
+        </svg>
+        <span id="loader-percent" class="loader-percent">0%</span>
+      </div>
+      <p class="loader-text">Carving the Runes of Yggdrasil…</p>
+    </div>
+  </div>
+
+  <div class="vignette-overlay" aria-hidden="true"></div>
+  <div class="grain-overlay" aria-hidden="true"></div>
+
+  <main id="canvas-container" class="canvas-container" aria-label="Interactive 3D Norse Realm Map">
+    <canvas id="realm-canvas"></canvas>
+    <div id="realm-labels-layer" class="realm-labels-layer" aria-hidden="true"></div>
+  </main>
+
+  <header class="hud-top" id="hud-top">
+    <div class="brand-cluster">
+      <button type="button" id="btn-reset-view" class="brand-btn" title="Return to Yggdrasil Overview (Esc)">
+        <span class="brand-rune" aria-hidden="true">ᛉ</span>
+        <span class="brand-title" id="hud-owner-name">KANAK SACHIN CHAUDHARY</span>
+      </button>
+      <span class="realm-counter" id="realm-counter" aria-live="polite">Overview · 7 Realms</span>
+    </div>
+
+    <div class="hud-controls">
+      <button type="button" id="btn-audio" class="hud-icon-btn" aria-pressed="false" title="Toggle Ambient Wind & Drone">
+        <span class="btn-rune" aria-hidden="true">ᛟ</span>
+        <span class="btn-label" id="audio-label">Sound: Off</span>
+      </button>
+      <button type="button" id="btn-a11y-view" class="hud-icon-btn" aria-pressed="false" title="Switch to Readable Text View">
+        <span class="btn-rune" aria-hidden="true">ᚱ</span>
+        <span class="btn-label">Text View</span>
+      </button>
+    </div>
+  </header>
+
+  <div id="onboarding-hint" class="onboarding-hint" role="status">
+    <span class="hint-rune" aria-hidden="true">ᛟ</span>
+    <span>Click a realm to begin your journey · Drag to orbit · Scroll to zoom</span>
+  </div>
+
+  <aside class="minimap-wrapper" aria-label="Realm Radar Mini-Map">
+    <div class="minimap-ring" id="minimap-ring">
+      <svg viewBox="0 0 140 140" class="minimap-svg" aria-hidden="true">
+        <circle cx="70" cy="70" r="62" class="mm-outer"></circle>
+        <circle cx="70" cy="70" r="38" class="mm-inner"></circle>
+        <line x1="70" y1="8" x2="70" y2="132" class="mm-axis"></line>
+        <line x1="8" y1="70" x2="132" y2="70" class="mm-axis"></line>
+      </svg>
+      <span class="mm-center-tree" title="Yggdrasil">ᛉ</span>
+      <div id="minimap-nodes" class="minimap-nodes"></div>
+    </div>
+    <span class="minimap-caption" id="minimap-caption">Seven Realms</span>
+  </aside>
+
+  <nav class="realm-nav" aria-label="Realm Sections">
+    <ul class="realm-nav-list" id="realm-nav-list"></ul>
+  </nav>
+
+  <section id="realm-panel" class="realm-panel" role="dialog" aria-modal="true" aria-labelledby="panel-title" hidden>
+    <div class="panel-stone-texture" aria-hidden="true"></div>
+    <header class="panel-header">
+      <div class="panel-realm-badge">
+        <span id="panel-rune" class="panel-rune" aria-hidden="true">ᛗ</span>
+        <div>
+          <p id="panel-subtitle" class="panel-subtitle">REALM I</p>
+          <h2 id="panel-title" class="panel-title">Midgard</h2>
+        </div>
+      </div>
+      <div class="panel-header-actions">
+        <button type="button" id="btn-prev-realm" class="panel-nav-btn" title="Previous Realm (Left Arrow)" aria-label="Previous Realm">‹</button>
+        <button type="button" id="btn-next-realm" class="panel-nav-btn" title="Next Realm (Right Arrow)" aria-label="Next Realm">›</button>
+        <button type="button" id="btn-close-panel" class="panel-close-btn" title="Return to Realm Map (Esc)">
+          <span>Return to Map</span>
+          <span aria-hidden="true">✕</span>
+        </button>
+      </div>
+    </header>
+
+    <div class="rune-divider" aria-hidden="true">
+      <span>ᚠ</span><span>ᚢ</span><span>ᚦ</span><span>ᚨ</span><span>ᚱ</span><span>ᚲ</span><span>ᚷ</span>
+    </div>
+
+    <div id="panel-body" class="panel-body" tabindex="0"></div>
+  </section>
+
+  <section id="accessible-view" class="accessible-view" hidden aria-label="Accessible Resume View">
+    <div class="a11y-container">
+      <header class="a11y-header">
+        <div>
+          <p class="a11y-eyebrow">YGGDRASIL ARCHIVE · ACCESSIBLE EDITION</p>
+          <h1 id="a11y-name">Kanak Sachin Chaudhary</h1>
+          <p id="a11y-role" class="a11y-role">BCA in Artificial Intelligence & Data Science</p>
+        </div>
+        <button type="button" id="btn-exit-a11y" class="panel-close-btn">
+          <span>Return to 3D Realm Map</span>
+        </button>
+      </header>
+      <div id="a11y-content" class="a11y-content"></div>
+    </div>
+  </section>
+
+  <noscript>
+    <div class="noscript-fallback">
+      <h1>Kanak Sachin Chaudhary</h1>
+      <p>BCA in Artificial Intelligence & Data Science | K.R. Mangalam University, Gurugram (Expected: May 2029) | Gurugram, Haryana</p>
+      <p>Contact: +91-8826798833 | 2601060001@krmu.edu.in | linkedin.com/in/kanak-chaudhary-bbba52430 | github.com/kanak0091</p>
+    </div>
+  </noscript>
+
+  <!-- Three.js r128 + post-processing (jsDelivr serves the examples/js folder reliably) -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/CopyShader.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/LuminosityHighPassShader.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/EffectComposer.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/RenderPass.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/ShaderPass.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/UnrealBloomPass.js"></script>
+
+  <script src="script.js"></script>
+</body>
+</html>
